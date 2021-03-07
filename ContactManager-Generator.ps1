@@ -3,13 +3,15 @@
 # Set-PSDebug -Trace 1
 
 $ErrorActionPreference = 'Stop'
-
+# ----------------------------------------------------------------------
 function Edit ($File, $Replacing, $With)
 {
     (Get-Content $File -Raw).Replace($Replacing, $With) | Set-Content $File
 }
+# ----------------------------------------------------------------------
+# cd C:\Users\dharm\Dropbox\Documents\VisualStudio\ContactManager
 
-cd C:\Users\dharm\Dropbox\Documents\VisualStudio\ContactManager
+# cd C:\Temp
 
 if (Test-Path ContactManager)
 {
@@ -17,7 +19,7 @@ if (Test-Path ContactManager)
 
     Move-Item ContactManager _ContactManager-$date
 }
-
+# ----------------------------------------------------------------------
 New-Item -ItemType Directory -Name ContactManager
 
 cd .\ContactManager

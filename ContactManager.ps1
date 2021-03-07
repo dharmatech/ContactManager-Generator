@@ -38,6 +38,7 @@ git commit --message 'Initial checkin'
 
 New-Item -ItemType Directory -Name Models
 
+# ----------------------------------------------------------------------
 @"
 using System.ComponentModel.DataAnnotations;
 
@@ -60,7 +61,7 @@ namespace ContactManager.Models
 
 git add .
 git commit --message 'Add Contact.cs'
-
+# ----------------------------------------------------------------------
 
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 
@@ -83,9 +84,7 @@ dotnet ef database update
 
 git add .
 git commit --message 'Add Contact via scaffolding'
-
-
-
+# ----------------------------------------------------------------------
 $file = '.\Pages\Shared\_Layout.cshtml'
 
 $original_text = @"
@@ -101,16 +100,7 @@ Edit $file -Replacing $original_text -With $replacement_text
 
 git add .
 git commit --message 'Update ContactManager anchor'
-
-
-# dotnet run
-
-# https://localhost:5001/Contacts
-
-# test app
-# create, edit, delete
-
-
+# ----------------------------------------------------------------------
 @"
 using ContactManager.Models;
 using Microsoft.EntityFrameworkCore;
@@ -194,14 +184,7 @@ namespace ContactManager.Data
     }
 }
 "@ | Set-Content .\Data\SeedData.cs
-
-
-
-
-
-
-
-
+# ----------------------------------------------------------------------
 @"
 using ContactManager.Data;
 using Microsoft.AspNetCore.Hosting;
@@ -249,14 +232,9 @@ namespace ContactManager
 }
 "@ | Set-Content .\Program.cs
 
-
-
 git add .
 git commit --message 'SeedData'
-
-
-
-
+# ----------------------------------------------------------------------
 $file = '.\Models\Contact.cs'
 
 $original_text = @"
@@ -275,8 +253,7 @@ $replacement_text = @"
 "@
 
 Edit $file -Replacing $original_text -With $replacement_text
-
-
+# ----------------------------------------------------------------------
 $file = '.\Models\Contact.cs'
 
 $original_text = @"
@@ -289,8 +266,7 @@ $replacement_text = @"
 "@
 
 Edit $file -Replacing $original_text -With $replacement_text
-
-
+# ----------------------------------------------------------------------
 $file = '.\Models\Contact.cs'
 
 $original_text = @"
@@ -303,19 +279,14 @@ $replacement_text = @"
 "@
 
 Edit $file -Replacing $original_text -With $replacement_text
-
-
-
+# ----------------------------------------------------------------------
 dotnet ef migrations add userID_Status
 dotnet ef database update
 
 
 git add .
 git commit --message 'Contact : OwnerID and Status'
-
-
-
-
+# ----------------------------------------------------------------------
 $file = '.\Startup.cs'
 
 $original_text = @"
@@ -331,10 +302,10 @@ $replacement_text = @"
 "@
 
 Edit $file -Replacing $original_text -With $replacement_text
-
+# ----------------------------------------------------------------------
 git add .
 git commit --message 'Startup : AddRoles'
-
+# ----------------------------------------------------------------------
 # Require authenticated users
 
 $file = '.\Startup.cs'
@@ -349,8 +320,7 @@ using Microsoft.AspNetCore.Authorization;
 "@
 
 Edit $file -Replacing $original_text -With $replacement_text
-
-
+# ----------------------------------------------------------------------
 $file = '.\Startup.cs'
 
 $original_text = @"
@@ -369,11 +339,7 @@ $replacement_text = @"
 "@
 
 Edit $file -Replacing $original_text -With $replacement_text
-
-
-
-
-
+# ----------------------------------------------------------------------
 $file = '.\Pages\Index.cshtml.cs'
 
 $original_text = @"
@@ -386,9 +352,7 @@ using Microsoft.AspNetCore.Authorization;
 "@
 
 Edit $file -Replacing $original_text -With $replacement_text
-
-
-
+# ----------------------------------------------------------------------
 $file = '.\Pages\Index.cshtml.cs'
 
 $original_text = @"
@@ -401,9 +365,9 @@ $replacement_text = @"
 "@
 
 Edit $file -Replacing $original_text -With $replacement_text
-
+# ----------------------------------------------------------------------
 # .\Pages\Index.cshtml.cs
-
+# ----------------------------------------------------------------------
 $file = '.\Pages\Privacy.cshtml.cs'
 
 $original_text = @"
@@ -416,9 +380,7 @@ using Microsoft.AspNetCore.Authorization;
 "@
 
 Edit $file -Replacing $original_text -With $replacement_text
-
-
-
+# ----------------------------------------------------------------------
 $file = '.\Pages\Privacy.cshtml.cs'
 
 $original_text = @"
@@ -431,15 +393,14 @@ $replacement_text = @"
 "@
 
 Edit $file -Replacing $original_text -With $replacement_text
-
+# ----------------------------------------------------------------------
 git add .
 git commit --message 'Require authenticated users'
-
+# ----------------------------------------------------------------------
 # Configure the test account
-
+# ----------------------------------------------------------------------
 dotnet user-secrets set SeedUserPW Secret123!
-
-
+# ----------------------------------------------------------------------
 $file = '.\Program.cs'
 
 $original_text = @"
@@ -452,8 +413,7 @@ using Microsoft.Extensions.Configuration;
 "@
 
 Edit $file -Replacing $original_text -With $replacement_text
-
-
+# ----------------------------------------------------------------------
 $file = '.\Program.cs'
 
 $original_text = @"
@@ -474,14 +434,13 @@ $replacement_text = @"
 "@
 
 Edit $file -Replacing $original_text -With $replacement_text
-
+# ----------------------------------------------------------------------
 git add .
 git commit --message 'Configure the test account'
-
-
+# ----------------------------------------------------------------------
 # Review the contact operations requirements class
 # https://docs.microsoft.com/en-us/aspnet/core/security/authorization/secure-data?view=aspnetcore-5.0#review-the-contact-operations-requirements-class
-
+# ----------------------------------------------------------------------
 New-Item -ItemType Directory -Name Authorization
 
 @"
@@ -513,16 +472,14 @@ namespace ContactManager.Authorization
     }
 }
 "@ | Set-Content .\Authorization\ContactOperations.cs
-
+# ----------------------------------------------------------------------
 git add .
 git commit --message 'Authorization/ContactOperations.cs'
-
+# ----------------------------------------------------------------------
 # Create the test accounts and update the contacts
-
-# (this section depends on `ContactOperations` and `Constants`
-
+# (this section depends on `ContactOperations` and `Constants`)
 # https://docs.microsoft.com/en-us/aspnet/core/security/authorization/secure-data?view=aspnetcore-5.0#review-the-contact-operations-requirements-class
-
+# ----------------------------------------------------------------------
 $file = '.\Data\SeedData.cs'
 
 $original_text = @"
@@ -536,9 +493,7 @@ using Microsoft.AspNetCore.Identity;
 "@
 
 Edit $file -Replacing $original_text -With $replacement_text
-
-
-
+# ----------------------------------------------------------------------
 $file = '.\Data\SeedData.cs'
 
 $original_text = @"
@@ -619,15 +574,10 @@ $replacement_text = @"
 "@
 
 Edit $file -Replacing $original_text -With $replacement_text
-
+# ----------------------------------------------------------------------
 git add .
 git commit --message 'SeedData : EnsureUser and EnsureRole'
-
-
-
-
-
-
+# ----------------------------------------------------------------------
 $file = '.\Data\SeedData.cs'
 
 $original_text = @"
@@ -759,13 +709,13 @@ $replacement_text = @"
 "@
 
 Edit $file -Replacing $original_text -With $replacement_text
-
+# ----------------------------------------------------------------------
 git add .
 git commit --message 'Update SeedDB'
-
+# ----------------------------------------------------------------------
 # Create owner, manager, and administrator authorization handlers
 # https://docs.microsoft.com/en-us/aspnet/core/security/authorization/secure-data?view=aspnetcore-5.0#create-owner-manager-and-administrator-authorization-handlers
-
+# ----------------------------------------------------------------------
 @"
 using ContactManager.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -816,13 +766,13 @@ namespace ContactManager.Authorization
     }
 }
 "@ | Set-Content .\Authorization\ContactIsOwnerAuthorizationHandler.cs
-
+# ----------------------------------------------------------------------
 git add .
 git commit --message 'ContactIsOwnerAuthorizationHandler'
-
+# ----------------------------------------------------------------------
 # Create a manager authorization handler
 # https://docs.microsoft.com/en-us/aspnet/core/security/authorization/secure-data?view=aspnetcore-5.0#create-a-manager-authorization-handler
-
+# ----------------------------------------------------------------------
 @"
 using System.Threading.Tasks;
 using ContactManager.Models;
@@ -863,13 +813,13 @@ namespace ContactManager.Authorization
     }
 }
 "@ | Set-Content .\Authorization\ContactManagerAuthorizationHandler.cs
-
+# ----------------------------------------------------------------------
 git add .
 git commit --message 'ContactManagerAuthorizationHandler'
-
+# ----------------------------------------------------------------------
 # Create an administrator authorization handler
 # https://docs.microsoft.com/en-us/aspnet/core/security/authorization/secure-data?view=aspnetcore-5.0#create-an-administrator-authorization-handler
-
+# ----------------------------------------------------------------------
 @"
 using System.Threading.Tasks;
 using ContactManager.Models;
@@ -902,13 +852,13 @@ namespace ContactManager.Authorization
     }
 }
 "@ | Set-Content .\Authorization\ContactAdministratorsAuthorizationHandler.cs
-
+# ----------------------------------------------------------------------
 git add .
 git commit --message 'ContactAdministratorsAuthorizationHandler'
-
+# ----------------------------------------------------------------------
 # Register the authorization handlers
 # https://docs.microsoft.com/en-us/aspnet/core/security/authorization/secure-data?view=aspnetcore-5.0#register-the-authorization-handlers
-
+# ----------------------------------------------------------------------
 $file = '.\Startup.cs'
 
 $original_text = @"
@@ -921,8 +871,7 @@ using ContactManager.Authorization;
 "@
 
 Edit $file -Replacing $original_text -With $replacement_text
-
-
+# ----------------------------------------------------------------------
 $file = '.\Startup.cs'
 
 $original_text = @"
@@ -949,13 +898,13 @@ $replacement_text = @"
 "@
 
 Edit $file -Replacing $original_text -With $replacement_text
-
+# ----------------------------------------------------------------------
 git add .
 git commit --message 'Register the authorization handlers'
-
+# ----------------------------------------------------------------------
 # Create a base class for the Contacts Razor Pages
 # https://docs.microsoft.com/en-us/aspnet/core/security/authorization/secure-data?view=aspnetcore-5.0#create-a-base-class-for-the-contacts-razor-pages
-
+# ----------------------------------------------------------------------
 @"
 using ContactManager.Data;
 using Microsoft.AspNetCore.Authorization;
@@ -982,13 +931,13 @@ namespace ContactManager.Pages.Contacts
     }
 }
 "@ | Set-Content .\Pages\Contacts\DI_BasePageModel.cs
-
+# ----------------------------------------------------------------------
 git add .
 git commit --message 'DI_BasePageModel'
-
+# ----------------------------------------------------------------------
 # Update the CreateModel
 # https://docs.microsoft.com/en-us/aspnet/core/security/authorization/secure-data?view=aspnetcore-5.0#update-the-createmodel
-
+# ----------------------------------------------------------------------
 $file = '.\Pages\Contacts\Create.cshtml.cs'
 
 $original_text = @"
@@ -1003,10 +952,7 @@ using ContactManager.Authorization;
 "@
 
 Edit $file -Replacing $original_text -With $replacement_text
-
-
-
-
+# ----------------------------------------------------------------------
 $file = '.\Pages\Contacts\Create.cshtml.cs'
 
 $original_text = @"
@@ -1033,12 +979,7 @@ $replacement_text = @"
 "@
 
 Edit $file -Replacing $original_text -With $replacement_text
-
-
-
-
-
-
+# ----------------------------------------------------------------------
 $file = '.\Pages\Contacts\Create.cshtml.cs'
 
 $original_text = @"
@@ -1051,8 +992,7 @@ using ContactManager.Authorization;
 "@
 
 Edit $file -Replacing $original_text -With $replacement_text
-
-
+# ----------------------------------------------------------------------
 $file = '.\Pages\Contacts\Create.cshtml.cs'
 
 $original_text = @"
@@ -1095,13 +1035,13 @@ $replacement_text = @"
 "@
 
 Edit $file -Replacing $original_text -With $replacement_text
-
+# ----------------------------------------------------------------------
 git add .
 git commit --message 'Update Pages\Contacts\Create.cshtml.cs'
-
+# ----------------------------------------------------------------------
 # Update the IndexModel
 # https://docs.microsoft.com/en-us/aspnet/core/security/authorization/secure-data?view=aspnetcore-5.0#update-the-indexmodel
-
+# ----------------------------------------------------------------------
 @"
 using System;
 using System.Collections.Generic;
@@ -1155,13 +1095,13 @@ namespace ContactManager.Pages.Contacts
 }
 
 "@ | Set-Content .\Pages\Contacts\Index.cshtml.cs
-
+# ----------------------------------------------------------------------
 git add .
 git commit --message 'Update Pages\Contacts\Index.cshtml.cs'
-
+# ----------------------------------------------------------------------
 # Update the EditModel
 # https://docs.microsoft.com/en-us/aspnet/core/security/authorization/secure-data?view=aspnetcore-5.0#update-the-editmodel
-
+# ----------------------------------------------------------------------
 @"
 using System;
 using System.Collections.Generic;
@@ -1265,13 +1205,13 @@ namespace ContactManager.Pages.Contacts
     }
 }
 "@ | Set-Content .\Pages\Contacts\Edit.cshtml.cs
-
+# ----------------------------------------------------------------------
 git add .
 git commit --message 'Update Pages\Contacts\Edit.cshtml.cs'
-
+# ----------------------------------------------------------------------
 # Update the DeleteModel
 # https://docs.microsoft.com/en-us/aspnet/core/security/authorization/secure-data?view=aspnetcore-5.0#update-the-deletemodel
-
+# ----------------------------------------------------------------------
 @"
 using System;
 using System.Collections.Generic;
@@ -1350,13 +1290,13 @@ namespace ContactManager.Pages.Contacts
 }
 
 "@ | Set-Content .\Pages\Contacts\Delete.cshtml.cs
-
+# ----------------------------------------------------------------------
 git add .
 git commit --message 'Update Pages\Contacts\Delete.cshtml.cs'
-
+# ----------------------------------------------------------------------
 # Inject the authorization service into the views
 # https://docs.microsoft.com/en-us/aspnet/core/security/authorization/secure-data?view=aspnetcore-5.0#inject-the-authorization-service-into-the-views
-
+# ----------------------------------------------------------------------
 @"
 @using Microsoft.AspNetCore.Identity
 @using Microsoft.AspNetCore.Authorization
@@ -1372,14 +1312,10 @@ git commit --message 'Update Pages\Contacts\Delete.cshtml.cs'
 
 @inject IAuthorizationService AuthorizationService
 "@ | Set-Content .\Pages\_ViewImports.cshtml
-
+# ----------------------------------------------------------------------
 git add .
 git commit --message 'Update Pages\_ViewImports.cshtml'
-
-
-
-
-
+# ----------------------------------------------------------------------
 $file = '.\Pages\Contacts\Index.cshtml'
 
 $original_text = @"
@@ -1398,9 +1334,7 @@ $replacement_text = @"
 "@
 
 Edit $file -Replacing $original_text -With $replacement_text
-
-
-
+# ----------------------------------------------------------------------
 $file = '.\Pages\Contacts\Index.cshtml'
 
 $original_text = @"
@@ -1433,13 +1367,13 @@ $replacement_text = @"
 "@
 
 Edit $file -Replacing $original_text -With $replacement_text
-
+# ----------------------------------------------------------------------
 git add .
 git commit --message 'Update Pages\Contacts\Index.cshtml'
-
+# ----------------------------------------------------------------------
 # Update Details
 # https://docs.microsoft.com/en-us/aspnet/core/security/authorization/secure-data?view=aspnetcore-5.0#update-details
-
+# ----------------------------------------------------------------------
 $file = '.\Pages\Contacts\Details.cshtml'
 
 $original_text = @"
@@ -1511,10 +1445,10 @@ $replacement_text = @"
 "@
 
 Edit $file -Replacing $original_text -With $replacement_text
-
+# ----------------------------------------------------------------------
 git add .
 git commit --message 'Update Pages\Contacts\Details.cshtml'
-
+# ----------------------------------------------------------------------
 # Update the details page model
 
 @"
@@ -1587,11 +1521,9 @@ namespace ContactManager.Pages.Contacts
     }
 }
 "@ | Set-Content .\Pages\Contacts\Details.cshtml.cs
-
+# ----------------------------------------------------------------------
 git add .
 git commit --message 'Update Pages\Contacts\Details.cshtml.cs'
-
-
-
+# ----------------------------------------------------------------------
 # Get-Content C:\Users\dharm\AppData\Roaming\Microsoft\UserSecrets\aspnet-ContactManager-B740CA51-8183-4457-BDFC-7DDD0E3EAD0A\secrets.json
 
